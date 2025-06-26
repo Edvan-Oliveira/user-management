@@ -1,0 +1,23 @@
+<div class="mb-10">
+  <p-button
+    severity="info"
+    label="Voltar"
+    icon="pi pi-arrow-circle-left"
+    routerLink="/"
+  />
+</div>
+
+<p-fieldset legend="Confirmação de exclusão" class="mt-10">
+  <p class="m-0">
+    Usuário de nome <span class="font-bold">{{ user.name }}</span> e e-mail <span class="font-bold">{{ user.email }}</span>.
+  </p>
+  <div class="mt-6">
+    <p-button
+      label="Exluir"
+      severity="danger"
+      icon="pi pi-trash"
+      (onClick)="delete()"
+    />
+  </div>
+</p-fieldset>
+
