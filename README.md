@@ -18,17 +18,17 @@ Abra o navegador na URL http://localhost:85
 ```bash
 docker compose down
 ```
-
+---
 
 ## Executar testes da api
 
-Subir um cointainer do PostgreSQL para rodar o teste de integração:
+Necessário subir o container do PostgreSQL para rodar o teste de integração:
 
 ```bash
 docker compose -f .\docker-compose.test.yml up -d
 ```
 
-Para o container após os testes:
+Para parar o container do PostgreSQL após os testes:
 
 ```bash
 docker compose -f .\docker-compose.test.yml down
