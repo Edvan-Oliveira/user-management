@@ -1,7 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgClass} from '@angular/common';
 import {UserCreateRequest} from '../../dtos/user-create.request';
 import {Button} from 'primeng/button';
 import {FloatLabel} from 'primeng/floatlabel';
@@ -38,10 +37,10 @@ export class UserFormComponent implements OnInit {
   startForm() {
     this.populateUser()
     this.userForm = this.fb.group({
-        name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-        email: ['', [Validators.required, Validators.email, Validators.maxLength(60)]],
-        password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-        passwordConfirmation: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
+        name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+        email: [null, [Validators.required, Validators.email, Validators.maxLength(60)]],
+        password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+        passwordConfirmation: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
       },
       {
         validators: this.passwordsMatchValidator

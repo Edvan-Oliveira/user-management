@@ -7,6 +7,7 @@ import {ButtonModule} from 'primeng/button';
 import {CommonModule} from '@angular/common';
 import {TableLazyLoadEvent, TableModule} from 'primeng/table';
 import {UserFilterRequest} from '../../dtos/user-filter.request';
+import {UserFilterComponent} from '../user-filter/user-filter.component';
 
 @Component({
   selector: 'app-user-list',
@@ -15,7 +16,8 @@ import {UserFilterRequest} from '../../dtos/user-filter.request';
     RouterLink,
     ButtonModule,
     TableModule,
-    CommonModule
+    CommonModule,
+    UserFilterComponent
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
@@ -26,19 +28,26 @@ export class UserListComponent {
 
   userList: UserResponse[] = [];
   totalElements = 0;
+  userFilter: UserFilterRequest = { number: 0 };
 
-  search(event: TableLazyLoadEvent) {
-    this.userService.search(this.mountFilter(event)).subscribe((response: SearchResponse<UserResponse>) => {
+  onPage(event: TableLazyLoadEvent) {
+    this.userFilter.size = event.rows ?? 10;
+    this.userFilter.number = (event.first ?? 1) / (event.rows ?? 1);
+    this.search();
+  }
+
+  search() {
+    this.userService.search(this.userFilter).subscribe((response: SearchResponse<UserResponse>) => {
       this.userList = response.content;
       this.totalElements = response.page.totalElements;
     });
   }
 
-  mountFilter(event: TableLazyLoadEvent): UserFilterRequest {
-    return {
-      size: event.rows ?? 10,
-      number: (event.first ?? 1) / (event.rows ?? 1)
-    }
+  onSearch(event: UserFilterRequest) {
+    this.userFilter.userId = event.userId;
+    this.userFilter.userName = event.userName;
+    this.userFilter.userEmail = event.userEmail;
+    this.userFilter.number = 0;
+    this.search();
   }
-
 }

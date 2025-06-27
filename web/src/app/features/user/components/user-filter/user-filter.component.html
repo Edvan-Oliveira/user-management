@@ -1,0 +1,39 @@
+<form [formGroup]="filterForm" (ngSubmit)="search()">
+
+  <div class="grid grid-cols-[100px_3fr_3fr] gap-2 mb-5">
+
+    <p-floatlabel>
+      <input pInputText id="inputId" autocomplete="off" formControlName="userId" class="w-full"/>
+      <label for="inputId">ID</label>
+    </p-floatlabel>
+
+    <p-floatlabel>
+      <input pInputText id="inputName" autocomplete="off" formControlName="userName" class="w-full"/>
+      <label for="inputName">Nome</label>
+    </p-floatlabel>
+
+    <p-floatlabel>
+      <input pInputText id="inputEmail" autocomplete="off" formControlName="userEmail" class="w-full"/>
+      <label for="inputEmail">E-mail</label>
+    </p-floatlabel>
+
+    <div class="flex gap-2">
+      <p-button
+        type="submit"
+        [disabled]="filterForm.invalid"
+        label="Pesquisar"
+        icon="pi pi-search"
+      />
+      <p-button
+        id="btnClear"
+        [disabled]="filterForm.invalid"
+        label="Limpar"
+        severity="danger"
+        icon="pi pi-eraser"
+        (click)="clear()"
+      />
+    </div>
+  </div>
+
+
+</form>
