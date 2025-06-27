@@ -26,16 +26,16 @@ services:
     networks:
       - app_network
 
-  app-web:
-   build: ./web
-   container_name: app-web
-   restart: always
-   ports:
-     - "85:80"
-   depends_on:
-     - app-api
-   networks:
-     - app_network
+  # app-web:
+  #  build: ./web
+  #  container_name: app-web
+  #  restart: always
+  #  ports:
+  #    - "85:80"
+  #  depends_on:
+  #    - app-api
+  #  networks:
+  #    - app_network
 
 networks:
   app_network:

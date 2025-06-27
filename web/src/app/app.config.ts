@@ -9,12 +9,13 @@ import Aura from '@primeng/themes/aura';
 import {MessageService} from 'primeng/api';
 import {AppMessageService} from './core/services/app-message.service';
 import {handleErrorInterceptor} from './core/interceptors/handle-error.interceptor';
+import {pendingRequestsInterceptor$} from 'ng-http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({eventCoalescing: true}),
     provideHttpClient(
-      withInterceptors([handleErrorInterceptor])
+      withInterceptors([pendingRequestsInterceptor$, handleErrorInterceptor])
     ),
     provideRouter(routes),
     provideAnimationsAsync(),
